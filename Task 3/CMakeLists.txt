@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.25) 
+project(TriangleArea) 
+set(SOURCE_EXE main.cpp) 
+set(SOURCE_LIB triangle_area.cpp)  
+add_library(triangle_area SHARED ${SOURCE_LIB}) 
+add_executable(main ${SOURCE_EXE}) 
+target_link_libraries(main triangle_area)	
