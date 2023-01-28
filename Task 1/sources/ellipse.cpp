@@ -3,48 +3,48 @@
 
 Ellipse::Ellipse()
 {
-    x1 = 0;
-    y1 = 0;
-    x2 = 0;
-    y2 = 0;
+    centerPoint.x = 0;
+    centerPoint.y = 0;
+    radiusX = 3;
+    radiusY = 1;
 }
 
-Ellipse::Ellipse(double x1, double y1, double x2, double y2)
+Ellipse::Ellipse(Point point, double radius1, double radius2)
+    : centerPoint(point), radiusX(radius1), radiusY(radius2)
 {
-    this->x1 = x1;
-    this->y1 = y1;
-    this->x2 = x2;
-    this->y2 = y2;
+    if (radiusX < radiusY) std::swap(radiusX, radiusY);
 }
 
-double Ellipse::getX(double t) const {
-    return ((x1 - x2) * cos(t)) + x2;
+Point Ellipse::getPoint(double t) const
+{
+    Point point;
+    point.x = (centerPoint.x * cos(t)) + radiusY;
+    point.y = (centerPoint.y * sin(t)) + radiusX;
+
+    return point;
 }
 
-double Ellipse::getY(double t) const {
-    return ((y2 - y1) * cos(t)) + y1;
+Vector2d Ellipse::getFirstDerivative(double t) const
+{
+    Vector2d result;
+    result.x = (radiusX * sin(t));
+    result.y = - (radiusY * cos(t));
+
+    return result;
 }
 
-double Ellipse::getFirstDerivative(double t) const {
-  return -(y2 * cos(t)) / (x1 * sin(t));
+Point Ellipse::getCenter() const
+{
+    return centerPoint;
 }
 
-std::string Ellipse::getName() const {
-    return "Ellipse";
+
+double Ellipse::getR1() const
+{
+    return radiusX;
 }
 
-double Ellipse::getX1() const {
-    return x1;
-}
-
-double Ellipse::getY1() const {
-    return y1;
-}
-
-double Ellipse::getX2() const {
-    return x2;
-}
-
-double Ellipse::getY2() const {
-    return y2;
+double Ellipse::getR2() const
+{
+    return radiusY;
 }

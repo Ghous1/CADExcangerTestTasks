@@ -2,48 +2,36 @@
 
 Line::Line()
 {
-    x0 = 0;
-    y0 = 0;
-    xD = 0;
-    yD = 0;
+    originPoint.x = 0;
+    originPoint.y = 0;
+    direction.x = 1;
+    direction.y = 1;
 }
 
-Line::Line(double x0, double y0, double xD, double yD)
+Line::Line(Point point, Vector2d direction)
+    :originPoint(point), direction(direction)
 {
-    this->x0 = x0;
-    this->y0 = y0;
-    this->xD = xD;
-    this->yD = yD;
 }
 
-double Line::getX(double t) const {
-    return xD * t + x0;
+Point Line::getPoint(double t) const
+{
+    Point point((direction.x * t + originPoint.x),
+                (direction.y * t + originPoint.y));
+    return point;
 }
 
-double Line::getY(double t) const {
-    return yD * t + y0;
+Vector2d Line::getFirstDerivative(double t) const
+{
+    Vector2d firstDerivative(direction.x, direction.y);
+    return firstDerivative;
 }
 
-double Line::getFirstDerivative(double t) const {
-    return yD / xD;
+Point Line::getOriginPoint() const
+{
+    return originPoint;
 }
 
-std::string Line::getName() const {
-    return "Line";
-}
-
-double Line::getX1() const {
-    return x0;
-}
-
-double Line::getY1() const {
-    return y0;
-}
-
-double Line::getX2() const {
-    return xD;
-}
-
-double Line::getY2() const {
-    return yD;
+Vector2d Line::getDirection() const
+{
+    return direction;
 }

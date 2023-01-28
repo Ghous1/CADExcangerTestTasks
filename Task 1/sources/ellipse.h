@@ -6,24 +6,22 @@
 class Ellipse : public Curve
 {
 private:
-    double x1;
-    double y1;
+    Point centerPoint;
 
-    double x2;
-    double y2;
+    double radiusX;
+    double radiusY;
 
 public:
     Ellipse();
-    Ellipse(double x1, double y1, double x2, double y2);
-    double getX(double t) const override;
-    double getY(double t) const override;
-    double getFirstDerivative(double t) const override;
-    std::string getName() const override;
+    Ellipse(Point point, double radius1, double radius2);
 
-    double getX1() const override;
-    double getY1() const override;
-    double getX2() const override;
-    double getY2() const override;
+    Point getPoint(double t) const override;
+    Vector2d getFirstDerivative(double t) const override;
+
+    Point getCenter() const;
+
+    double getR1() const;
+    double getR2() const;
 };
 
 #endif // ELLIPSE_H

@@ -6,24 +6,18 @@
 class Line : public Curve
 {
 private:
-    double x0;
-    double y0;
-
-    double xD;
-    double yD;
+    Point originPoint;
+    Vector2d direction;
 
 public:
     Line();
-    Line(double x0, double y0, double xD, double yD);
-    double getX(double t) const override;
-    double getY(double t) const override;
-    double getFirstDerivative(double t) const override;
-    std::string getName() const override;
+    Line(Point point, Vector2d direction);
 
-    double getX1() const override;
-    double getY1() const override;
-    double getX2() const override;
-    double getY2() const override;
+    Point getPoint(double t) const override;
+    Vector2d getFirstDerivative(double t) const override;
+
+    Point getOriginPoint() const;
+    Vector2d getDirection() const;
 };
 
 #endif // LINE_H

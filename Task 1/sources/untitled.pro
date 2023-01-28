@@ -14,4 +14,6 @@ HEADERS += \
     curve.h \
     ellipse.h \
     line.h \
-    randomnumber.h
+    point.h \
+    randomnumber.h \
+    vector2d.h
