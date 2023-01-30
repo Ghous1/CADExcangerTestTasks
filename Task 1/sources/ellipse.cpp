@@ -13,6 +13,7 @@ Ellipse::Ellipse(Point point, double radius1, double radius2)
     : centerPoint(point), radiusX(radius1), radiusY(radius2)
 {
     if (radiusX < radiusY) std::swap(radiusX, radiusY);
+	if (radiusX <= 0 || radiusY <= 0) throw "Negative radius!";
 }
 
 Point Ellipse::getPoint(double t) const
